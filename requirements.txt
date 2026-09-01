@@ -3,3 +3,7 @@ tqdm
 pandas
 pyarrow
 ipykernel
+matplotlib
+seaborn
+scikit-learn
+sentence-transformers
