@@ -1,5 +1,5 @@
 # Data
-data/
+/data/
 
 # Environments
 .venv/
@@ -25,4 +25,4 @@ __pycache__/
 
 # Secrets
 .env.env
-.env 
+.env

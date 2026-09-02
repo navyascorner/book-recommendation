@@ -69,3 +69,9 @@ Every later model has to beat 0.1977 while moving 38 upward.
 - Only parsed reviews with more than 30 words and less than 300.
 - For language, used a hack to kind of remove reviews in which common English words like 'and', 'or', 'the', 'is', 'in' did not exist.
 - Embeddings were made with `all-MiniLM-L6-v2` sentence transformer. This is a good starting point with a 256 token limit. Does not get too slow.
+
+## Prompt and workflow
+
+When the user enters a natural language query, a prompt converts it into a structured JSON.
+
+Then, a fuzzy match with llm proposed titles happens on a normalized book title dataset.
