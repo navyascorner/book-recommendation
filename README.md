@@ -63,3 +63,9 @@ The `min(|target|, k)` denominator is the Mult-VAE/EASE convention. It caps the 
 **Read together:** the model is accurate and useless. It reaches 0.1977 by handing all 10,000 users the same 38 famous books. That works here because the `>= 20 positives` filter selects heavy mainstream readers who have in fact read Harry Potter.
 
 Every later model has to beat 0.1977 while moving 38 upward.
+
+## Reviews
+- This was really big, so downloaded on Google Cloud Platform using Colab. 
+- Only parsed reviews with more than 30 words and less than 300.
+- For language, used a hack to kind of remove reviews in which common English words like 'and', 'or', 'the', 'is', 'in' did not exist.
+- Embeddings were made with `all-MiniLM-L6-v2` sentence transformer. This is a good starting point with a 256 token limit. Does not get too slow.
