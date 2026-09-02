@@ -9,7 +9,7 @@ Output = `The Little Prince`
 ## Data
 1. 1002607 (1M+) books
 2. 827,743 users
-3. 105.7M interactions across  and 996,177 works, with only 0.0128% density
+3. 105.7M interactions across and 996,177 works, with only 0.0128% density
 
 ## About the Code and Decisions
 
@@ -32,3 +32,34 @@ Output = `The Little Prince`
 #### User Split
 1. 10k for test, 10k for eval, rest 800k+ for training. CF would mean reducing more based on number of interactions. Both positive and negative signals preserved.
 2. For val/test sets, the condition is to have more than 20 ratings of 4 or 5.
+
+## Experiments
+
+### Popularity Baseline
+
+1. Rank every work by its interaction count in `train_split.parquet`. 
+2. Evaluated on 10,000 held-out validation users. 
+3. Each user's 4–5 star ratings are split in half: one half plus all their 0–3 star interactions form the fold-in (shown to the model), the other half is the target. 
+4. Recommendations are the top 10 most-read works the user hasn't already seen.
+
+**Metrics**
+
+```
+recall@k = hits in top-k / min(|target|, k)
+ndcg@k   = DCG@k / IDCG@k,  binary relevance
+```
+
+The `min(|target|, k)` denominator is the Mult-VAE/EASE convention. It caps the denominator at k, since 10 slots cannot cover a 90-book target set. Plain recall (dividing by `|target|`) gives numbers roughly 10x smaller — not comparable.
+
+**Results**
+
+| Metric | Value |
+|---|---|
+| recall@10 | 0.1977 |
+| ndcg@10 | 0.2214 |
+| distinct works recommended | 38 |
+| catalog coverage | 0.004% |
+
+**Read together:** the model is accurate and useless. It reaches 0.1977 by handing all 10,000 users the same 38 famous books. That works here because the `>= 20 positives` filter selects heavy mainstream readers who have in fact read Harry Potter.
+
+Every later model has to beat 0.1977 while moving 38 upward.
