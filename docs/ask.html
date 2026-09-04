@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoraBot — describe what you want to read</title>
+<meta name="description" content="Describe what you want to read. NoraBot finds it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="stage">
+  <div class="title"><a href="index.html">NoraBot</a></div>
+
+  <div class="ask">
+    <h1>Describe what you want to read</h1>
+    <p class="sub">The more context you give, the better. Names of books you like, what
+      you're in the mood for, things you don't like — everything helps.</p>
+
+    <form id="form">
+      <input type="text" id="q" autocomplete="off"
+             aria-label="What do you want to read?"
+             placeholder="something feel-good and short">
+    </form>
+
+    <section class="results" id="results" hidden>
+      <p class="note" id="note"></p>
+      <ol id="list"></ol>
+      <button class="again" id="again">Search again</button>
+    </section>
+  </div>
+</main>
+
+<script src="ask.js"></script>
+</body>
+</html>
